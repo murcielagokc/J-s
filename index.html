@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechParts - Repuestos para Laptops</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <span class="material-symbols-outlined icon">memory</span>
+                <h1>TechParts</h1>
+            </div>
+            <div class="center-search-bar">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="main-search-input" placeholder="Buscar por producto, marca o modelo...">
+                <div id="main-search-results" class="search-results-container"></div>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="nav-link">Categorías</a>
+                <a href="#" class="nav-link">Contacto</a>
+                <a href="#" class="nav-link">Nosotros</a>
+                <a href="cart.html" class="icon-button">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Encuentra los mejores repuestos para tus Laptops</h2>
+                    <p>Calidad y compatibilidad garantizada a un solo clic.</p>
+                    <a href="#" class="btn-primary hero-button">Ver Productos</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-products">
+            <div class="container">
+                <h2>Productos Destacados</h2>
+                <div class="product-grid" id="featured-products-grid">
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2>Categorías Destacadas</h2>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <div class="category-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&q=80&w=400');">
+                        </div>
+                        <p>Teclados</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&q=80&w=400');">
+                        </div>
+                        <p>Pantallas</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1611264629933-4e3a0a3a4e8c?auto=format&fit=crop&q=80&w=400');">
+                        </div>
+                        <p>Baterías</p>
+                    </a>
+                    <a href="#" class="category-card">
+                        <div class="category-image"
+                            style="background-image: url('https://images.unsplash.com/photo-1563829424-34537475ae24?auto=format&fit=crop&q=80&w=400');">
+                        </div>
+                        <p>Cargadores</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 TechParts. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda de Repuestos Tech</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+    <div class="container search-container">
+        <header>
+            <div class="logo">
+                <span class="material-symbols-outlined icon">memory</span>
+                <h1>Repuestos Tech</h1>
+            </div>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Categorías</a>
+                <a href="#">Marcas</a>
+                <a href="#">Soporte</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-bar">
+                     <span class="material-symbols-outlined">search</span>
+                    <input type="text" placeholder="Buscar repuestos...">
+                </div>
+                <button class="cart-button">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-count">3</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="search-main">
+            <aside class="filters">
+                <h2>Filtros</h2>
+                <div class="filter-group">
+                    <h3>Categoría</h3>
+                    <select>
+                        <option>Todas las categorías</option>
+                        <option>Pantallas</option>
+                        <option>Teclados</option>
+                        <option>Baterías</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <h3>Rango de precios</h3>
+                    <input type="range">
+                </div>
+                 <button class="apply-filters-btn">Aplicar Filtros</button>
+            </aside>
+
+            <section class="search-results">
+                <div class="results-header">
+                    <h2>Resultados de la Búsqueda</h2>
+                    <p>Mostrando 1-12 de 86 resultados</p>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbzMU4SCL32CpFsymE3lPimBI-tIZ1Hs57G19zrl0XZffbn3j3-Atl05uMSOaPgpEp1vOWREOQh0EYkbCLTjrl6pYi9gnPAFbeNSEr21hHVMhTtSzSjdgn0egYbDrWvvz6h6XBA1DEAHkbQTtewJW1d1eYfjLkxWU_QzxB6yJ30ArQURLNNj1iRswMO1tAxlTzqb1t9eNSIufA_WmN-mPs7hghfN5-m5JBtMyVLonopCaffyh-CcODwGFbzRl_tx8jz8wAG_ETOYk');"></div>
+                        <div class="product-card-info">
+                            <h3>Pantalla de Portátil</h3>
+                            <p>15.6 pulgadas, Full HD</p>
+                            <div class="product-card-bottom">
+                                <p class="price">$120.00</p>
+                                <button class="add-to-cart-small-btn">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

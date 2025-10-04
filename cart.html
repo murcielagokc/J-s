@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechParts - Carrito de Compras</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body>
+
+   <header class="main-header main-header--inner">
+        <div class="container">
+            <div class="logo">
+                <span class="material-symbols-outlined icon">memory</span>
+                <h1><a href="index.html" style="color: inherit; text-decoration: none;">TechParts</a></h1>
+            </div>
+            <div class="header-search-bar">
+                <span class="material-symbols-outlined">search</span>
+                <input type="text" id="inner-search-input" placeholder="Buscar repuestos...">
+                <div id="inner-search-results" class="search-results-container"></div>
+            </div>
+            <nav class="header-nav">
+                <a href="index.html">Inicio</a>
+                <a href="#">Categorías</a>
+                <a href="#">Marcas</a>
+                <a href="#">Soporte</a>
+            </nav>
+            <div class="header-actions">
+                <a href="cart.html" class="icon-button">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="cart-count"></span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-title">
+            <h1>Tu Carrito</h1>
+        </div>
+        <div class="cart-layout">
+            <div id="cart-items-container">
+                </div>
+            
+            <div class="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío</span>
+                    <span>$10.00</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span id="summary-total">$10.00</span>
+                </div>
+                <button class="btn-primary checkout-btn">Proceder al Pago</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
