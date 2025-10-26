@@ -1,0 +1,229 @@
+/* assets/css/components/_footer.css */
+
+.main-footer {
+    background-color: #0f172a; /* Azul muy oscuro como en la imagen */
+    color: #f9fafb;
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+}
+.footer-social {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+/* Grid para el contenido del footer */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Columnas del footer */
+.footer-column h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+.footer-column h3:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color, #4f46e5);
+}
+
+/* Logo en el footer */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo .icon {
+    color: #4f46e5; /* Color primario */
+    font-size: 2rem;
+    background-color: rgba(79, 70, 229, 0.1); /* Fondo sutil */
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-column h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.footer-logo h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* Descripción */
+.footer-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    color: var(--navbar-text-muted, #9ca3af);
+}
+
+/* Iconos de redes sociales */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.07); /* Más sutil */
+    color: #f9fafb;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.social-icon:hover {
+    background-color: #4f46e5; /* Color primario */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Enlaces del footer */
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--navbar-text-muted, #9ca3af);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color, #4f46e5);
+}
+
+/* Sección de contacto */
+.footer-contact li {
+    display: flex;
+    align-items: flex-start; /* Para alineación superior con textos largos */
+    gap: 0.9rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.footer-contact .material-symbols-outlined {
+    color: #4f46e5; /* Color primario */
+    font-size: 1.3rem;
+    background-color: rgba(79, 70, 229, 0.1); /* Fondo sutil */
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem; /* Ancho fijo para alineación */
+    height: 2.5rem;
+}
+
+/* Separador */
+.footer-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: 2.5rem 0 1.5rem;
+}
+
+/* Parte inferior del footer */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.copyright {
+    color: var(--navbar-text-muted, #9ca3af);
+}
+
+.footer-policies {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-policies a {
+    color: var(--navbar-text-muted, #9ca3af);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-policies a:hover {
+    color: var(--primary-color, #4f46e5);
+}
+
+.separator {
+    color: var(--navbar-text-muted, #9ca3af);
+    font-size: 0.8rem;
+}
+
+/* Modo oscuro - si es necesario ajustar algo específico */
+:root.dark-mode .main-footer {
+    background-color: #111827;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .footer-policies {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .separator {
+        display: none;
+    }
+}

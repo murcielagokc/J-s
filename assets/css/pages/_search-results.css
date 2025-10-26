@@ -1,0 +1,46 @@
+/* assets/css/pages/_search-results.css */
+.search-page-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+}
+.filters-sidebar {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: sticky;
+    top: 100px; /* Espacio para el header pegajoso */
+}
+.filters-sidebar h3 {
+    font-size: 1.25rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.filter-group {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.filter-group:last-of-type { border-bottom: none; }
+.filter-group h4 { font-size: 1rem; margin-bottom: 1rem; }
+.price-display { text-align: right; margin-top: 0.5rem; }
+#filter-brands-container label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .search-page-layout { grid-template-columns: 1fr; }
+    .filters-sidebar { position: static; }
+}

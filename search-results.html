@@ -16,24 +16,62 @@
         <div class="container">
             <div class="logo">
                 <span class="material-symbols-outlined icon">memory</span>
-                <h1><a href="index.html" style="color: inherit; text-decoration: none;">J&S</a></h1>
+                <h1><a href="index.html">J&S</a></h1>
             </div>
             <div class="center-search-bar">
                 <span class="material-symbols-outlined">search</span>
-                <input type="text" id="main-search-input" placeholder="Buscar por producto, marca o modelo...">
+                <input type="text" id="main-search-input" placeholder="Buscar productos...">
                 <div id="main-search-results" class="search-results-container"></div>
             </div>
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item ">
+                        <a href="/search-results.html" class="nav-link dropdown-toggle">
+                            Categorías 
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Nosotros</a>
+                    </li>
+                </ul>
+            </nav>
             <div class="header-actions">
-                <a href="/search-results.html" class="nav-link">Categorías</a>
-                <a href="#" class="nav-link">Contacto</a>
-                <a href="#" class="nav-link">Nosotros</a>
-                <a href="cart.html" class="icon-button">
+                <button id="dark-mode-toggle" class="icon-button" title="Cambiar modo claro/oscuro">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+                <a href="cart.html" class="icon-button cart-icon" title="Ver carrito">
                     <span class="material-symbols-outlined">shopping_cart</span>
                     <span class="cart-count"></span>
                 </a>
+                <button id="mobile-menu-toggle" class="icon-button mobile-menu-button" title="Menú">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
         </div>
     </header>
+
+    <div class="mobile-menu-panel">
+        <div class="mobile-menu-header">
+            <button class="icon-button close-mobile-menu">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <nav class="mobile-menu-nav">
+            <div class="mobile-search">
+                <input type="text" placeholder="Buscar productos...">
+            </div>
+
+            <a href="/search-results.html">Categorías</a>
+            <a href="#contacto">Contacto</a>
+            <a href="#nosotros">Nosotros</a>
+        </nav>
+    </div>
+
+    <div class="mobile-menu-overlay"></div>
 
     <main class="container">
         <div class="page-title">
@@ -78,9 +116,95 @@
         </div>
     </main>
 
-    <footer>
-        </footer>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Columna 1: Sobre Nosotros -->
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <span class="material-symbols-outlined icon">memory</span>
+                        <h3>J&S</h3>
+                    </div>
+                    <p class="footer-description">Especialistas en repuestos para laptops con las mejores marcas y
+                        garantía de calidad en cada producto.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon" aria-label="WhatsApp">
+                            <span class="material-symbols-outlined">smartphone</span>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Tienda Física">
+                            <span class="material-symbols-outlined">store</span>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Chat">
+                            <span class="material-symbols-outlined">chat</span>
+                        </a>
+                    </div>
+                </div>
 
-    <script src="assets/js/script.js"></script>
+                <!-- Columna 2: Enlaces Rápidos -->
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="search-results.html">Productos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Categorías -->
+                <div class="footer-column">
+                    <h3>Categorías</h3>
+                    <ul class="footer-links">
+                        <li><a href="search-results.html?category=Teclados">Teclados</a></li>
+                        <li><a href="search-results.html?category=Pantallas">Pantallas</a></li>
+                        <li><a href="search-results.html?category=Baterías">Baterías</a></li>
+                        <li><a href="search-results.html?category=Discos%20Duros">Discos Duros</a></li>
+                        <li><a href="search-results.html?category=Cargadores">Cargadores</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Contacto -->
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <span class="material-symbols-outlined">location_on</span>
+                            <span>Lima, Perú</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">call</span>
+                            <span>+51 937 122 927</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">mail</span>
+                            <span>contacto@jyslaptops.com</span>
+                        </li>
+                        <li>
+                            <span class="material-symbols-outlined">schedule</span>
+                            <span>Lun-Vie: 9am-6pm | Sáb: 9am-2pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Separador -->
+            <div class="footer-divider"></div>
+
+            <!-- Copyright y políticas -->
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 J&S. Todos los derechos reservados.</p>
+                <div class="footer-policies">
+                    <a href="#">Términos y Condiciones</a>
+                    <span class="separator">|</span>
+                    <a href="#">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/main.js"></script>
+    <div id="toast-container"></div>
 </body>
+
 </html>

@@ -1,0 +1,371 @@
+
+:root {
+    --navbar-bg: #1f2937;              
+    --navbar-text: #f9fafb;            
+    --navbar-text-muted: #9ca3af;      
+    --navbar-border: #374151;          
+    --navbar-highlight: #4f46e5;      
+    --navbar-highlight-bg: rgba(79, 70, 229, 0.15);  
+    --navbar-shadow: 0 2px 10px rgba(0, 0, 0, 0.25); 
+    
+    --mobile-menu-width: 85%;          
+    --mobile-menu-max-width: 320px;   
+    
+    --transition-fast: 150ms;          
+    --transition-normal: 300ms;        
+    --transition-slow: 500ms;          
+    
+    --z-navbar: 1000;                  
+    --z-menu-overlay: 1001;           
+    --z-mobile-menu: 1002;             
+}
+
+.main-header {
+    background-color: var(--navbar-bg);
+    color: var(--navbar-text);
+    padding: 0.75rem 0;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-navbar);
+    box-shadow: var(--navbar-shadow);
+    width: 100%;
+}
+
+.main-header .container {
+    display: flex;
+    /* Añade estas propiedades: */
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.logo a {
+    color: var(--navbar-text);
+    text-decoration: none;
+}
+
+.logo .icon {
+    color: var(--navbar-highlight);
+    font-size: 1.75rem;
+}
+
+/* Búsqueda central */
+.center-search-bar {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+}
+
+.center-search-bar input {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--navbar-text);
+    border: 1px solid var(--navbar-border);
+    border-radius: 9999px;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.center-search-bar input::placeholder {
+    color: var(--navbar-text-muted);
+}
+
+.center-search-bar input:focus {
+    outline: none;
+    border-color: var(--navbar-highlight);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.center-search-bar .material-symbols-outlined {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--navbar-text-muted);
+}
+
+/* Navegación horizontal */
+.header-nav {
+    display: flex;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--navbar-text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--navbar-highlight);
+}
+
+/* Menús desplegables */
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background-color: var(--navbar-bg);
+    border: 1px solid var(--navbar-border);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    box-shadow: var(--navbar-shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--transition-normal) ease;
+    z-index: var(--z-navbar);
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1rem;
+    color: var(--navbar-text);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--navbar-highlight);
+}
+
+/* Acciones del header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-button {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--navbar-text);
+    transition: background-color var(--transition-fast);
+}
+
+.icon-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Contador del carrito */
+.cart-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: var(--navbar-highlight);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: none; /* Se mostrará con JS */
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--navbar-bg);
+}
+
+/* ----- MENÚ MÓVIL ----- */
+.mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    left: 0; /* Asegurar que está en posición 0 y no usa -100% */
+    width: 270px; /* Ancho fijo para controlar mejor el espacio */
+    max-width: 80%; /* Máximo para dispositivos muy pequeños */
+    height: 100%;
+    z-index: 1002;
+    background-color: #1f2937; /* Color oscuro como en la primera imagen */
+    transform: translateX(-100%); /* Fuera de la pantalla inicialmente */
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-menu-panel.is-open {
+    transform: translateX(0); /* Al centro cuando está abierto */
+}
+
+/* X de cerrar en la esquina superior derecha */
+.mobile-menu-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #374151;
+}
+
+.close-mobile-menu {
+    background: none;
+    border: none;
+    color: #f9fafb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Barra de búsqueda */
+.mobile-search {
+    padding: 1rem;
+    border-bottom: 1px solid #374151;
+}
+
+.mobile-search input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid #4b5563;
+    background-color: #111827;
+    color: #f9fafb;
+}
+
+.mobile-search input::placeholder {
+    color: #9ca3af;
+}
+
+/* Elementos de navegación */
+.mobile-menu-nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+}
+
+.mobile-menu-nav a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    color: #f9fafb;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Para que sea como la primera imagen, alineación a la izquierda */
+.mobile-menu-nav a {
+    text-align: left;
+    padding-left: 1.5rem;
+}
+
+/* Para que sea como la segunda imagen, centrado */
+/* Descomenta estas líneas si quieres el estilo de la segunda imagen
+.mobile-menu-nav a {
+    text-align: center;
+    padding-left: 0;
+}
+*/
+
+/* Overlay de fondo para cuando el menú está abierto */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-menu-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ----- CORRECCIONES RESPONSIVE ----- */
+
+
+/* ----- MODO OSCURO ----- */
+/* El menú ya usa un tema oscuro por defecto */
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 992px) {
+    .header-nav {
+        display: none !important;
+    }
+    
+    .mobile-menu-button {
+        display: flex !important;
+    }
+    .main-header .container {
+        grid-template-columns: auto 1fr auto !important;
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .center-search-bar {
+        display: none !important;
+    }
+    
+    .mobile-menu-panel {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* ----- AJUSTES PARA PANTALLAS PEQUEÑAS ----- */
+@media (max-width: 360px) {
+    .mobile-menu-panel {
+        width: 250px;
+    }
+}

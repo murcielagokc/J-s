@@ -1,0 +1,37 @@
+/* assets/css/base/_variables.css */
+:root {
+    --primary-color: #4f46e5;
+    --primary-color-darker: #4338ca;
+    --primary-light: rgba(79, 70, 229, 0.1);
+    --background-light: #f9fafb;
+    --card-background: #ffffff;
+    --text-color: #111827;
+    --text-muted-color: #6b7280;
+    --border-color: #e5e7eb;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --font-family: 'Inter', sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    
+    /* Transiciones */
+    --transition-fast: 150ms;
+    --transition-normal: 300ms;
+    --transition-slow: 500ms;
+    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root.dark-mode {
+    --primary-color: #6366f1;
+    --primary-color-darker: #4f46e5;
+    --primary-light: rgba(99, 102, 241, 0.15);
+    --background-light: #111827;
+    --card-background: #1f2937;
+    --text-color: #f9fafb;
+    --text-muted-color: #9ca3af;
+    --border-color: #374151;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
+}
