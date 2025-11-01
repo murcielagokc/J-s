@@ -50,7 +50,7 @@ export function generateWhatsAppMessageAndRedirect() {
         return;
     }
 
-    let message = "¡Hola J&S!  Quiero realizar el siguiente pedido:\n\n";
+    let message = "¡Hola J&S! 👋 Quiero realizar el siguiente pedido:\n\n";
     cart.forEach(item => {
         const itemTotal = item.salePrice || item.price;
         message += `*Producto:* ${item.name}\n`;
@@ -59,7 +59,8 @@ export function generateWhatsAppMessageAndRedirect() {
     });
 
     const subtotal = cart.reduce((sum, item) => sum + ((item.salePrice || item.price) * item.quantity), 0);
-    
+    // Aquí el problema - shipping no está definido:
+    const shipping = 10.00; // AÑADIR ESTA LÍNEA - Define la variable shipping
     const total = subtotal + shipping;
 
     message += "-------------------------\n";
@@ -69,7 +70,7 @@ export function generateWhatsAppMessageAndRedirect() {
     message += "Quedo a la espera de las instrucciones para el pago. ¡Gracias!";
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/51937122927?text=${encodedMessage}`;
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
     window.open(whatsappURL, '_blank');
 }
