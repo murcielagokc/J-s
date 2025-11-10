@@ -3,7 +3,9 @@
 /* 1. Base (Variables y estilos globales) */
 @import url("base/_variables.css");
 @import url("base/_base.css");
-
+@import url("base/_loading.css");
+@import url("base/_enhancements.css");
+@import url("base/_breadcrumbs.css");
 /* 2. Layout (Contenedores, rejillas y formularios) */
 @import url("layout/_layout.css");
 @import url("layout/_forms.css");
@@ -15,9 +17,11 @@
 @import url("components/_search.css");
 @import url("components/_toast.css");
 @import url("components/_footer.css");
+@import url("_colors-enhanced.css");
 
 /* 4. Pages (Estilos específicos de cada página) */
 @import url("pages/_home.css");
 @import url("pages/_search-results.css");
 @import url("pages/_product-details.css");
 @import url("pages/_cart.css");
+@import url("pages/_abaut.css");

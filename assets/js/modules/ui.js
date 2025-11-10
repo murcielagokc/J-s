@@ -39,7 +39,9 @@ export function renderPrice(product) {
 }
 
 export function renderProductCard(product) {
-    return `<div class="product-card">
+    const onSaleClass = product.salePrice && product.salePrice < product.price ? 'on-sale' : '';
+    
+    return `<div class="product-card ${onSaleClass}" data-category="${product.category}">
         <a href="product-details.html?id=${product.id}" class="product-card-link">
             <div class="product-image" style="background-image: url('${product.imageUrl}');"></div>
             <div class="product-card-info">
@@ -49,14 +51,19 @@ export function renderProductCard(product) {
         </a>
         <div class="product-card-bottom">
             <div class="product-card-price">${renderPrice(product)}</div>
-            <button class="btn-primary add-to-cart-small-btn" onclick="handlePurchase('${product.id}')">Añadir</button>
+            <button class="btn-primary add-to-cart-small-btn" onclick="handlePurchase('${product.id}')">AÃ±adir</button>
         </div>
     </div>`;
 }
 
 export function renderProductDetailView(product) {
     const gallery = product.images.map((img, i) => `<img src="${img}" alt="Thumbnail ${i + 1}" class="thumbnail-img ${i === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">`).join('');
-    const variants = product.groupId ? allProducts.filter(p => p.groupId === product.groupId) : [];
+    
+    // Modificamos esta línea para verificar que groupId no esté vacío
+    const variants = (product.groupId && product.groupId.trim && product.groupId.trim() !== '') 
+        ? allProducts.filter(p => p.groupId === product.groupId) 
+        : [];
+    
     const variantsHTML = variants.map(v => `<a href="product-details.html?id=${v.id}" class="variant-link ${v.id === product.id ? 'active' : ''}">${v.name.replace(product.name.split(' - ')[0], '')}</a>`).join('');
     const specsHTML = product.specifications.map(spec => `<div class="spec-row"><dt class="spec-name">${spec.name}</dt><dd class="spec-value">${spec.value}</dd></div>`).join('');
     
@@ -70,10 +77,10 @@ export function renderProductDetailView(product) {
             <p class="brand-name">${product.brand}</p>
             <h1>${product.name}</h1>
             <div class="price-container">${renderPrice(product)}</div>
-            <p class="stock-status">Disponible</p>
+            <p class="stock-status available">Disponible</p>
             <p class="description">${product.description}</p>
             ${variants.length > 1 ? `<div class="variants-container"><h4>Otras Versiones:</h4><div class="variant-links-wrapper">${variantsHTML}</div></div>` : ''}
-            <button class="btn-primary add-to-cart-btn" onclick="handlePurchase('${product.id}')">Añadir al Carrito</button>
+            <button class="btn-primary add-to-cart-btn" onclick="handlePurchase('${product.id}')">AÃ±adir al Carrito</button>
             <div class="specs-table"><h3>Especificaciones Técnicas</h3><dl>${specsHTML}</dl></div>
         </div>
     </div>`;
@@ -82,7 +89,7 @@ export function renderProductDetailView(product) {
     const container = document.getElementById('product-detail-container');
     if(container) container.innerHTML = mainContentHTML;
     
-    // --- NUEVA LÓGICA PARA PRODUCTOS RELACIONADOS ---
+    // --- NUEVA LÃ"GICA PARA PRODUCTOS RELACIONADOS ---
     renderRelatedProducts(product);
 }
 function renderRelatedProducts(currentProduct) {
@@ -172,6 +179,20 @@ export function displayProductDetails() {
     const product = allProducts.find(p => p.id === productId);
 
     if (product) {
+        // Actualizar breadcrumbs
+        const categoryBreadcrumb = document.getElementById('category-breadcrumb');
+        const productBreadcrumb = document.getElementById('product-breadcrumb');
+        
+        if (categoryBreadcrumb) {
+            categoryBreadcrumb.textContent = product.category;
+            categoryBreadcrumb.href = `search-results.html?category=${encodeURIComponent(product.category)}`;
+        }
+        
+        if (productBreadcrumb) {
+            productBreadcrumb.textContent = product.name;
+        }
+        
+        // Renderizar la vista del producto
         renderProductDetailView(product);
     } else {
         const container = document.getElementById('product-detail-container');
@@ -338,8 +359,46 @@ function closeCartPanel() {
 
 // --- ESTADOS DE UI ---
 export function showLoadingState() {
-    const sel = '#results-grid, #product-detail-container, #featured-products-grid';
-    document.querySelectorAll(sel).forEach(c => { if(c) c.innerHTML = '<p style="text-align:center; padding: 2rem;">Cargando productos...</p>'; });
+  const sel = '#results-grid, #product-detail-container, #featured-products-grid';
+  document.querySelectorAll(sel).forEach(container => { 
+    if (!container) return;
+    
+    if (container.id === 'results-grid' || container.id === 'featured-products-grid') {
+      // Grid de productos - mostrar skeleton cards
+      const skeletonCards = Array(8).fill().map(() => `
+        <div class="skeleton-card">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-info">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line medium"></div>
+            <div class="skeleton-line long"></div>
+          </div>
+        </div>
+      `).join('');
+      
+      container.innerHTML = skeletonCards;
+    } else if (container.id === 'product-detail-container') {
+      // Página de detalles - skeleton personalizado
+      container.innerHTML = `
+        <div class="product-detail-layout">
+          <div class="product-detail-gallery">
+            <div class="skeleton-image" style="height:400px; border-radius:1rem;"></div>
+            <div style="display:flex;gap:0.5rem;margin-top:1rem;">
+              ${Array(4).fill('<div class="skeleton-image" style="height:80px;width:80px;border-radius:0.5rem;"></div>').join('')}
+            </div>
+          </div>
+          <div class="skeleton-info" style="padding:1rem 0;">
+            <div class="skeleton-line short"></div>
+            <div class="skeleton-line long" style="height:2rem;margin-bottom:1rem;"></div>
+            <div class="skeleton-line medium" style="height:1.5rem;margin-bottom:2rem;"></div>
+            <div class="skeleton-line long"></div>
+            <div class="skeleton-line long"></div>
+            <div class="skeleton-line medium"></div>
+          </div>
+        </div>
+      `;
+    }
+  });
 }
 
 export function showErrorState(message) {

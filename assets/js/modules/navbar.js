@@ -25,16 +25,16 @@ export function initializeNavbar() {
     mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
     categoriesDropdown = document.getElementById('categories-dropdown');
     brandsDropdown = document.getElementById('brands-dropdown');
-    
+
     // Inicializar componentes
     setupDarkMode();
     setupMobileMenu();
     populateDropdowns();
     updateResponsiveVisibility();
-    
+
     // Configurar escuchadores de eventos
     window.addEventListener('resize', updateResponsiveVisibility);
-    
+
     // Iniciar con el menú móvil cerrado
     closeMobileMenu();
 }
@@ -45,31 +45,49 @@ export function initializeNavbar() {
 function setupDarkMode() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     if (!darkModeToggle) return;
-    
+
     // Verificar preferencia guardada
     const darkModeEnabled = localStorage.getItem('J&SDarkMode') === 'true';
-    
+
     // También comprobar la preferencia del sistema
-    const prefersDarkMode = window.matchMedia && 
-                           window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+    const prefersDarkMode = window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     // Aplicar modo oscuro si está guardado o si el usuario prefiere modo oscuro
-    if (darkModeEnabled || 
+    if (darkModeEnabled ||
         (prefersDarkMode && localStorage.getItem('J&SDarkMode') === null)) {
         document.documentElement.classList.add('dark-mode');
         darkModeToggle.querySelector('.material-symbols-outlined').textContent = 'light_mode';
     }
-    
+
     // Añadir evento de click
+    // Reemplaza el event listener del botón de modo oscuro
     darkModeToggle.addEventListener('click', () => {
-        const isDarkMode = document.documentElement.classList.toggle('dark-mode');
-        localStorage.setItem('J&SDarkMode', isDarkMode);
-        darkModeToggle.querySelector('.material-symbols-outlined').textContent = 
-            isDarkMode ? 'light_mode' : 'dark_mode';
-        
-        if (typeof showToast === 'function') {
-            showToast(isDarkMode ? 'Modo oscuro activado' : 'Modo claro activado');
-        }
+    // Añadir clase para iniciar la transición
+    document.body.classList.add('theme-transition');
+    
+    // Cambiar el tema
+    const isDarkMode = document.documentElement.classList.toggle('dark-mode');
+    localStorage.setItem('J&SDarkMode', isDarkMode);
+    
+    // Actualizar icono con animación
+    const icon = darkModeToggle.querySelector('.material-symbols-outlined');
+    icon.style.transform = 'rotate(360deg)';
+    
+    // Revertir la rotación después de completar la animación
+    setTimeout(() => {
+        icon.style.transform = '';
+        icon.textContent = isDarkMode ? 'light_mode' : 'dark_mode';
+    }, 300);
+    
+    if (typeof showToast === 'function') {
+        showToast(isDarkMode ? 'Modo oscuro activado' : 'Modo claro activado');
+    }
+    
+    // Quitar la clase después de completar la transición
+    setTimeout(() => {
+        document.body.classList.remove('theme-transition');
+    }, 500);
     });
 }
 
@@ -81,25 +99,25 @@ function setupMobileMenu() {
         console.error('Elementos del menú móvil no encontrados');
         return;
     }
-    
+
     // Botón de abrir menú
     mobileMenuButton.addEventListener('click', openMobileMenu);
-    
+
     // Overlay para cerrar menú al hacer clic fuera
     mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-    
+
     // Botón de cerrar dentro del menú
     const closeButton = document.querySelector('.close-mobile-menu');
     if (closeButton) {
         closeButton.addEventListener('click', closeMobileMenu);
     }
-    
+
     // Sincronizar campos de búsqueda
     const mobileSearchInput = document.querySelector('.mobile-search input');
     const mainSearchInput = document.getElementById('main-search-input');
-    
+
     if (mobileSearchInput && mainSearchInput) {
-        mobileSearchInput.addEventListener('input', function() {
+        mobileSearchInput.addEventListener('input', function () {
             mainSearchInput.value = this.value;
             // Disparar evento para activar la búsqueda
             mainSearchInput.dispatchEvent(new Event('input', { bubbles: true }));
@@ -112,7 +130,7 @@ function setupMobileMenu() {
  */
 function openMobileMenu() {
     if (!mobileMenuPanel || !mobileMenuOverlay) return;
-    
+
     mobileMenuPanel.classList.add('is-open');
     mobileMenuOverlay.classList.add('is-visible');
     document.body.style.overflow = 'hidden'; // Prevenir scroll
@@ -123,7 +141,7 @@ function openMobileMenu() {
  */
 function closeMobileMenu() {
     if (!mobileMenuPanel || !mobileMenuOverlay) return;
-    
+
     mobileMenuPanel.classList.remove('is-open');
     mobileMenuOverlay.classList.remove('is-visible');
     document.body.style.overflow = ''; // Restaurar scroll
@@ -135,23 +153,23 @@ function closeMobileMenu() {
 function updateResponsiveVisibility() {
     const isMobileView = window.innerWidth <= 992;
     const headerNav = document.querySelector('.header-nav');
-    
+
     // En modo escritorio
     if (!isMobileView) {
         // Cerrar menú móvil si está abierto
         closeMobileMenu();
-        
+
         // Mostrar navegación horizontal
         if (headerNav) headerNav.style.display = 'flex';
-        
+
         // Ocultar botón de hamburguesa
         if (mobileMenuButton) mobileMenuButton.style.display = 'none';
-    } 
+    }
     // En modo móvil
     else {
         // Ocultar navegación horizontal
         if (headerNav) headerNav.style.display = 'none';
-        
+
         // Mostrar botón de hamburguesa
         if (mobileMenuButton) mobileMenuButton.style.display = 'flex';
     }
@@ -165,7 +183,7 @@ function populateDropdowns() {
         console.warn('No hay productos disponibles para llenar los menús desplegables');
         return;
     }
-    
+
     populateCategoriesDropdown();
     populateBrandsDropdown();
     populateMobileCategories();
@@ -176,18 +194,18 @@ function populateDropdowns() {
  */
 function populateCategoriesDropdown() {
     if (!categoriesDropdown) return;
-    
+
     try {
         // Obtener categorías únicas
         const categories = [...new Set(allProducts.map(p => p.category))];
-        
+
         // Limpiar el dropdown
         categoriesDropdown.innerHTML = '';
-        
+
         // Crear elementos de menú
         categories.forEach(category => {
             if (!category) return;
-            
+
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = `search-results.html?category=${encodeURIComponent(category)}`;
@@ -205,22 +223,22 @@ function populateCategoriesDropdown() {
  */
 function populateBrandsDropdown() {
     if (!brandsDropdown) return;
-    
+
     try {
         // Obtener marcas únicas
         const brands = [...new Set(allProducts.map(p => p.brand))]
             .filter(brand => brand && brand !== 'Sin Marca');
-        
+
         // Ordenar alfabéticamente
         brands.sort();
-        
+
         // Limpiar el dropdown
         brandsDropdown.innerHTML = '';
-        
+
         // Crear elementos de menú
         brands.forEach(brand => {
             if (!brand) return;
-            
+
             const li = document.createElement('li');
             const a = document.createElement('a');
             a.href = `search-results.html?brand=${encodeURIComponent(brand)}`;
@@ -239,11 +257,11 @@ function populateBrandsDropdown() {
 function populateMobileCategories() {
     const mobileCategories = document.getElementById('mobile-categories');
     if (!mobileCategories) return;
-    
+
     try {
         // Limpiar el contenedor
         mobileCategories.innerHTML = '';
-        
+
         // Si tenemos categorías en el dropdown, las usamos
         if (categoriesDropdown && categoriesDropdown.querySelectorAll('li a').length > 0) {
             const links = categoriesDropdown.querySelectorAll('li a');
@@ -254,13 +272,13 @@ function populateMobileCategories() {
                 a.textContent = link.textContent;
                 mobileCategories.appendChild(a);
             });
-        } 
+        }
         // Si no, obtenemos las categorías directamente
         else if (allProducts && allProducts.length > 0) {
             const categories = [...new Set(allProducts.map(p => p.category))];
             categories.forEach(category => {
                 if (!category) return;
-                
+
                 const a = document.createElement('a');
                 a.href = `search-results.html?category=${encodeURIComponent(category)}`;
                 a.className = 'nav-link';

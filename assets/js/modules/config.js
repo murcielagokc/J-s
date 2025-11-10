@@ -8,4 +8,4 @@ export const GOOGLE_SHEET_URLS = {
 export const CURRENCY_SYMBOL = 'S/';
 export const WHATSAPP_NUMBER = '937122927';
 export const PRODUCTS_PER_PAGE = 9;
-export const CACHE_DURATION_MINUTES = 60;
+export const CACHE_DURATION_MINUTES = 1;

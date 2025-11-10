@@ -1,0 +1,92 @@
+/* Microinteracciones mejoradas */
+
+/* Para tarjetas de producto */
+.product-card {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease, 
+              background-color 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Para botones */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.btn-primary:active::after {
+  opacity: 1;
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0) translate(-50%, -50%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+/* Esquema de colores secundarios para ofertas */
+.product-card.on-sale {
+  border-color: var(--accent-color);
+}
+
+.product-card.on-sale::before {
+  content: 'Oferta';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+/* Mejoras para móviles */
+@media (max-width: 768px) {
+  .btn-primary, .btn-secondary {
+    padding: 0.85rem 1.25rem; /* Botones más grandes en móvil */
+  }
+  
+  .product-card-bottom {
+    padding-bottom: 1.25rem; /* Más espacio para botones en móvil */
+  }
+  
+  .filter-group {
+    margin-bottom: 1.5rem; /* Más espacio entre filtros */
+  }
+}

@@ -1,0 +1,35 @@
+/* Estilos para breadcrumbs */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted-color);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: '/';
+  margin: 0 0.5rem;
+  color: var(--text-muted-color);
+}
+
+.breadcrumb-link {
+  color: var(--text-muted-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb-link:hover {
+  color: var(--primary-color);
+}
+
+.breadcrumb-current {
+  font-weight: 600;
+  color: var(--text-color);
+}

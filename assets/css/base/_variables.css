@@ -1,37 +1,95 @@
-/* assets/css/base/_variables.css */
 :root {
-    --primary-color: #4f46e5;
-    --primary-color-darker: #4338ca;
-    --primary-light: rgba(79, 70, 229, 0.1);
-    --background-light: #f9fafb;
-    --card-background: #ffffff;
-    --text-color: #111827;
-    --text-muted-color: #6b7280;
-    --border-color: #e5e7eb;
-    --success-color: #22c55e;
-    --error-color: #ef4444;
-    --font-family: 'Inter', sans-serif;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
-    
-    /* Transiciones */
-    --transition-fast: 150ms;
-    --transition-normal: 300ms;
-    --transition-slow: 500ms;
-    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  /* === PALETA MODO CLARO === */
+  
+  /* Colores primarios */
+  --primary-color: #4f46e5;         /* Morado-azul (actual) */
+  --primary-darker: #4338ca;        /* Morado-azul más oscuro */
+  --primary-light: rgba(79, 70, 229, 0.1); /* Fondo sutil */
+  --secondary-color: #06b6d4;       /* Cian/turquesa */
+  
+  /* Colores de estado */
+  --success-color: #10b981;         /* Verde esmeralda */
+  --warning-color: #f59e0b;         /* Ámbar */
+  --error-color: #ef4444;           /* Rojo */
+  --info-color: #3b82f6;            /* Azul */
+  
+  /* Fondos */
+  --background-light: #f9fafb;      /* Fondo general */
+  --card-background: #ffffff;       /* Tarjetas/componentes */
+  --section-background: #f3f4f6;    /* Secciones destacadas */
+  
+  /* Textos - mejor jerarquía */
+  --text-heading: #111827;          /* Encabezados */
+  --text-color: #1f2937;            /* Texto principal */
+  --text-muted: #4b5563;            /* Texto secundario */
+  --text-light: #6b7280;            /* Texto terciario */
+  --text-disabled: #9ca3af;         /* Texto deshabilitado */
+  
+  /* Enlaces */
+  --link-color: var(--primary-color);
+  --link-hover: var(--primary-darker);
+  
+  /* Bordes y separadores mejorados */
+  --border-color: #e5e7eb;          /* Bordes estándar */
+  --border-color-dark: #d1d5db;     /* Bordes destacados */
+  --divider-light: #f3f4f6;         /* Separadores sutiles */
+  --divider-medium: #e5e7eb;        /* Separadores estándar */
+  --divider-strong: #d1d5db;        /* Separadores fuertes */
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -1px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.03);
+  
+  /* Transiciones */
+  --transition-theme: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 :root.dark-mode {
-    --primary-color: #6366f1;
-    --primary-color-darker: #4f46e5;
-    --primary-light: rgba(99, 102, 241, 0.15);
-    --background-light: #111827;
-    --card-background: #1f2937;
-    --text-color: #f9fafb;
-    --text-muted-color: #9ca3af;
-    --border-color: #374151;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.3);
+  /* === PALETA MODO OSCURO === */
+  
+  /* Colores primarios */
+  --primary-color: #818cf8;         /* Morado-azul más claro */
+  --primary-darker: #6366f1;        /* Versión más intensa */
+  --primary-light: rgba(129, 140, 248, 0.15); /* Fondo sutil */
+  --secondary-color: #22d3ee;       /* Cian/turquesa más brillante */
+  
+  /* Colores de estado */
+  --success-color: #34d399;         /* Verde más brillante */
+  --warning-color: #fbbf24;         /* Ámbar más brillante */
+  --error-color: #f87171;           /* Rojo más brillante */
+  --info-color: #60a5fa;            /* Azul más brillante */
+  
+  /* Fondos - con más contraste entre niveles */
+  --background-light: #111827;      /* Fondo general */
+  --card-background: #1f2937;       /* Tarjetas/componentes */
+  --section-background: #141e33;    /* Secciones con tinte azul */
+  
+  /* Textos - mejor jerarquía y contraste */
+  --text-heading: #f9fafb;          /* Encabezados */
+  --text-color: #e5e7eb;            /* Texto principal */
+  --text-muted: #9ca3af;            /* Texto secundario */
+  --text-light: #6b7280;            /* Texto terciario */
+  --text-disabled: #4b5563;         /* Texto deshabilitado */
+  
+  /* Enlaces */
+  --link-color: #a5b4fc;            /* Más claro para mejor contraste */
+  --link-hover: #c7d2fe;            /* Efecto hover más visible */
+  
+  /* Bordes y separadores */
+  --border-color: #374151;          /* Bordes estándar */
+  --border-color-dark: #4b5563;     /* Bordes destacados */
+  --divider-light: #1f2937;         /* Separadores sutiles */
+  --divider-medium: #374151;        /* Separadores estándar */
+  --divider-strong: #4b5563;        /* Separadores fuertes */
+  
+  /* Sombras más intensas */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+}
+
+/* Transiciones suaves para el cambio de tema */
+body, .card, .header, button, input, .product-card, footer, .navbar {
+  transition: var(--transition-theme);
 }
